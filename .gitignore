@@ -14,3 +14,5 @@
 /summary.xlsx
 /test
 /title
+# 忽略配置文件
+src/config.py
