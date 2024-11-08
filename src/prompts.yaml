@@ -1,0 +1,157 @@
+# src/prompts.yaml
+title_prompt: |
+    Here is an academic challenge for you.
+    I will provide you with a list of references. There exists a review paper in the subject "{subject}" that includes these references. You are to give me a guess at the title of this review paper.
+    Here are the references: {references}
+    
+    Note: Please provide your answer in <title> tags. For example: <title>Your Title Here</title>
+
+outline_prompt: |
+    Based on the following paper's subject and references, generate a clear and logical outline of first-level section headings for a comprehensive survey paper.
+    
+    Subject: {subject}
+    References: {references}
+    
+    Requirements:
+    1. Generate 6-10 first-level section headings
+    2. Don't include Introduction and Conclusion in the count
+    3. Each heading should be concise and academically appropriate
+    4. Focus on organizing topics logically and coherently
+    5. Ensure comprehensive coverage of the research area
+    6. Don't use bullet points or numbers
+    
+    Format your response as follows:
+    <outline>
+    Introduction
+    [Your 6-10 section headings here, one per line]
+    Conclusion
+    </outline>
+
+abstract_prompt: |
+    You are an academic writing assistant specialized in the field of "{subject}". I am writing a survey paper titled "{title}". Here is my outline:
+
+    {outline}
+
+    Please generate a comprehensive abstract for this survey paper following these requirements:
+    1. Write a single paragraph
+    2. Length should be between 200-500 words
+    3. Focus on synthesizing key aspects of the survey
+    4. Highlight the significance and scope of the review
+    5. Mention key findings or conclusions
+    6. Use formal academic language
+    7. Do not include any metadata (e.g., "Abstract:", headings, or keywords)
+
+    Please format your response in <abstract> tags. For example:
+    <abstract>Your abstract content here...</abstract>
+
+reference_selection_prompt: |
+    You are an academic writing assistant specialized in the field of "{subject}". I am writing a survey paper titled "{title}" with the following outline:
+    {outline}
+
+    For the section "{section}", I need your help to select relevant references from the following list. Please choose references that are most pertinent to this specific section's topic and scope.
+
+    Here are the references:
+    {references}
+
+    Requirements:
+    1. Select only the most relevant references for this section
+    2. Format each selected reference on a new line, starting with "*"
+    3. Preserve the original reference numbers in square brackets (e.g., [1], [20])
+    4. Focus on quality over quantity - select only truly relevant references
+    5. Consider the section's specific focus and scope
+    
+    Please format your response in <refs> tags. For example:
+    <refs>
+    * [1] Reference one
+    * [5] Reference five
+    </refs>
+
+# src/prompts.yaml
+CoTreference_selection_prompt: |
+    You are a scholarly expert in {subject}, tasked with selecting the most relevant references for a section of a comprehensive survey paper. Let's approach this systematically.
+
+    Survey Paper Title: "{title}"
+    Current Section: "{section}"
+
+    Complete Outline:
+    {outline}
+
+    Available References:
+    {references}
+
+    Let's think about this step by step:
+
+    1. First, analyze the section title "{section}" and identify its key themes and scope.
+        Think: What are the main concepts and areas this section aims to cover?
+
+    2. Next, examine each reference in the context of this section:
+        - Is it directly related to the section's main themes?
+        - Does it provide foundational knowledge or recent advances?
+        - How significant is its contribution to this specific topic?
+        - Does it connect well with other selected references?
+
+    3. Consider the coverage and balance:
+        - Are we covering all important aspects of the section?
+        - Do we have a good mix of foundational and recent work?
+        - Are there any critical gaps in the selected references?
+
+    Share your analysis first, then provide your final selection in the required format.
+
+    Requirements for the final selection:
+    1. Choose only the most pertinent references
+    2. Start each reference with "*"
+    3. Preserve the original reference numbers [n]
+    4. Format the final list within <refs> tags
+    5. List references in a logical order (e.g., foundational to recent)
+
+    Example format for final selection:
+    <refs>
+    * [1] Reference one
+    * [5] Reference five
+    </refs>
+
+subsection_prompt: |
+    You are an academic writing assistant specialized in the field of "{subject}". I am writing a survey paper titled "{title}". Here is my outline:
+    {outline}
+
+    I am working on the section "{section}". Based on the following selected references for this section:
+    {section_refs}
+
+    Please generate 3-5 subsection headings for this section following these requirements:
+    1. Each subsection should be specific and focused
+    2. Headings should be concise and academically appropriate
+    3. Ensure logical progression of topics
+    4. Cover the main aspects discussed in the references
+    5. Maintain consistent formatting and style
+
+    Format your response with <subsections> tags, with each subsection starting with "* ". For example:
+    <subsections>
+    * First Subsection Title
+    * Second Subsection Title
+    * Third Subsection Title
+    </subsections>
+
+content_prompt: |
+    You are an academic writing assistant specialized in the field of "{subject}". 
+    I am writing a survey paper titled "{title}" with the following outline:
+
+    {outline}
+
+    I need you to write the content for the subsection "{subsec_heading}" under the section "{section_heading}".
+    
+    Here are the references you should cite in your content:
+    {section_refs}
+
+    Requirements:
+    1. Write 3-5 paragraphs (approximately 1000 words)
+    2. Cite references appropriately using square brackets (e.g., [1], [2])
+    3. Focus solely on the specific subsection topic
+    4. Ensure academic style and clarity
+    5. Maintain logical flow between paragraphs
+    6. Include proper citations from the provided references
+    7. Do not include any headings or titles
+
+    Your response should be formatted with <content> tags. For example:
+    <content>
+    [Your multiple paragraphs here...]
+    </content>
